@@ -17,12 +17,12 @@ exclude:
   - test
   - vendor
 
-permalink: "/:path/"
+permalink: "/:path:/"
 
 collections:
   articles:
     output: true
-    permalink: "/:path/"
+    permalink: "/:path:/"
 
 defaults:
   - scope:
@@ -48,11 +48,52 @@ sass:
 
 logo: /assets/images/cards/default.png
 
+# ============================================================================
+# SITE CONFIGURATION - Update these values for your fork/deployment
+# ============================================================================
+# WARNING: These values contain sensitive configuration. See SECURITY.md
+# for details on what needs to be updated when deploying this site.
+
+site_config:
+  # Repository information - Update to your fork
+  repository_owner: SeeYaaG
+  repository_name: opensource.guide
+  repository_nwo: SeeYaaG/opensource.guide
+  repository_url: https://github.com/SeeYaaG/opensource.guide
+  default_branch: main
+  
+  # Social media accounts - Update to your handles
+  twitter:
+    username: github  # TODO: Update to your Twitter handle
+  
+  facebook:
+    publisher: https://www.facebook.com/GitHub/  # TODO: Update to your Facebook page
+  
+  # Search and analytics - Update tokens from your accounts
+  google:
+    site_verification: c1kuD-K2HIVF635lypcsWPoD4kilo5-jA_wBFyT4uMY  # TODO: Replace with your Google Search Console token
+  
+  # Email subscription service - Update with your MailChimp account
+  mailchimp:
+    account_id: 9d7ced8c4bbd6c2f238673f0f  # TODO: Replace with your MailChimp account ID
+    form_id: b514344ba3  # TODO: Replace with your MailChimp form ID
+    endpoint: "//github.us11.list-manage.com/subscribe/post"  # Update region if needed
+    timezone: "US/Eastern"  # TODO: Update to your timezone
+  
+  # Locale configuration
+  default_locale: en
+  fallback_locale: en
+
+# ============================================================================
+# Legacy GitHub configuration (maintained for compatibility)
+# Use site_config above for new references
+# ============================================================================
+
 github:
-  repository_nwo: github/opensource.guide
+  repository_nwo: "{{ site.site_config.repository_nwo }}"
 
 twitter:
-  username: github
+  username: "{{ site.site_config.twitter.username }}"
 
 facebook:
-  publisher: https://www.facebook.com/GitHub/
+  publisher: "{{ site.site_config.facebook.publisher }}"

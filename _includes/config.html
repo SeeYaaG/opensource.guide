@@ -1,0 +1,13 @@
+{% comment %}
+  Configuration include file
+  
+  This file provides centralized access to site configuration values.
+  It normalizes the _config.yml values for use throughout the site.
+  
+  Usage:
+    {% include config.html %}
+    {% assign config = site.site_config %}
+    {{ config.repository_nwo }}
+{% endcomment %}
+
+{% assign config = site.site_config %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign t = site.data.locales[page.lang][page.lang] %}
+{% assign t = site.data.locales[page.lang][page.lang] | default: site.data.locales.en.en %}
 {% include nav.html %}
 
 <header class="article-header {{ page.class }} bg-gray-light">

@@ -1,4 +1,5 @@
-{% assign t = site.data.locales[page.lang][page.lang] %}
+{% include config.html %}
+{% assign t = site.data.locales[page.lang][page.lang] | default: site.data.locales.en.en %}
 <footer class="bg-white border-top text-center pt-5">
   <div class="container-lg p-responsive mx-auto">
 
@@ -10,7 +11,7 @@
           <h3 class="h3-mktg mb-3">{{ t.footer.contribute.heading }}</h3>
           <p class="mb-3 p-large">{{ t.footer.contribute.description }}</p>
           <p>
-            <a data-proofer-ignore href="https://github.com/{{ site.github.repository_nwo }}/blob/main/{{ page.path }}"
+            <a data-proofer-ignore href="{{ config.repository_url }}/blob/{{ config.default_branch }}/{{ page.path }}"
               class="btn btn-outline">
               {{ t.footer.contribute.button }}
             </a>
@@ -20,7 +21,7 @@
       <div class="col-12 col-sm-6 mb-4">
         <div class="height-full p-5">
           <div id="mc_embed_signup">
-            <form action="//github.us11.list-manage.com/subscribe/post?u=9d7ced8c4bbd6c2f238673f0f&amp;id=b514344ba3"
+            <form action="{{ config.mailchimp.endpoint }}?u={{ config.mailchimp.account_id }}&amp;id={{ config.mailchimp.form_id }}"
               method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
               target="_blank" novalidate>
               <div id="mc_embed_signup_scroll">
@@ -44,7 +45,7 @@
                   <div class="" id="mce-success-response" style="display:none"></div>
                 </div>
                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
-                    name="b_9d7ced8c4bbd6c2f238673f0f_b514344ba3" tabindex="-1" value=""></div>
+                    name="b_{{ config.mailchimp.account_id }}_{{ config.mailchimp.form_id }}" tabindex="-1" value=""></div>
               </div>
             </form>
           </div>
@@ -69,21 +70,19 @@
         <svg height="20" class="octicon octicon-heart v-align-middle fill-gray mx-1" aria-label="{{love_label}}"
           viewBox="0 0 12 16" version="1.1" width="15" role="img">
           <path
-            d="M11.2 3c-.52-.63-1.25-.95-2.2-1-.97 0-1.69.42-2.2 1-.51.58-.78.92-.8 1-.02-.08-.28-.42-.8-1-.52-.58-1.17-1-2.2-1-.95.05-1.69.38-2.2 1-.52.61-.78 1.28-.8 2 0 .52.09 1.52.67 2.67C1.25 8.82 3.01 10.61 6 13c2.98-2.39 4.77-4.17 5.34-5.33C11.91 6.51 12 5.5 12 5c-.02-.72-.28-1.39-.8-2.02V3z">
-          </path>
+            d="M11.2 3c-.52-.63-1.25-.95-2.2-1-.97 0-1.69.42-2.2 1-.51.58-.78.92-.8 1-.02-.08-.28-.42-.8-1-.52-.58-1.17-1-2.2-1-.95.05-1.69.38-2.2 1-.52.61-.78 1.28-.8 2 0 .52.09 1.52.67 2.67C1.25 8.8 3.01 12.5 6 15.25c3-2.75 4.75-6.35 5.33-7.67.58-1.15.67-2.15.67-2.67 0-.72-.28-1.39-.8-2z"></path>
         </svg>
         {% endcapture %}
         {% capture github %}
         <svg height="20" class="octicon octicon-mark-github v-align-middle fill-gray mx-1" aria-label="GitHub"
           viewBox="0 0 16 16" version="1.1" width="20" role="img">
           <path
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
-          </path>
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
         </svg>
         {% endcapture %}
         {% capture friends %}
         {% assign friends_label = t.footer.byline.friends_label %}
-        <a href="https://github.com/github/opensource.guide/graphs/contributors" class="text-gray">{{ friends_label
+        <a href="{{ config.repository_url }}/graphs/contributors" class="text-gray">{{ friends_label
           }}</a>
         {% endcapture %}
 
